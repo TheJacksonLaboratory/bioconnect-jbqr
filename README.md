@@ -5,5 +5,5 @@ all the major fuctions of JBQ, describle study, assay, file, and download data a
 
 
 # Getting Started
-See [BioConnect Documentation]{https://docs.bioconnect.jax.org/resources/jbq/} 
+See [BioConnect Documentation](https://docs.bioconnect.jax.org/resources/jbq/)
 
