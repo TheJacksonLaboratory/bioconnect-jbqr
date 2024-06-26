@@ -204,7 +204,7 @@ JBQ = R6::R6Class(
     #'
     #' @return character, version
     get_version = function() {
-      "0.0.1 build_2024_06_24"
+      "0.0.1 build_2024_06_26"
     },
 
     #' @description
