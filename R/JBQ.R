@@ -155,7 +155,15 @@ JBQ = R6::R6Class(
     command = NULL,
     operation = NULL
     ) {
-      cmd = paste0("jbq", " ", command, " ", operation)
+
+      jbq_command <- ""
+      if ( self$get_os() == "linux" ) {
+        jbq_command = "./jbq"
+      } else {
+        jbq_command = "jbq"
+      }
+
+      cmd = paste0(jbq_command, " ", command, " ", operation)
       log_debug("cmd: {cmd}")
       output <- system(cmd, intern=TRUE)
       output
@@ -189,6 +197,21 @@ JBQ = R6::R6Class(
       df
     },
 
+    get_os = function(){
+      sysinf <- Sys.info()
+      if (!is.null(sysinf)){
+        os <- sysinf['sysname']
+        if (os == 'Darwin')
+          os <- "osx"
+      } else { ## mystery machine
+        os <- .Platform$OS.type
+        if (grepl("^darwin", R.version$os))
+          os <- "osx"
+        if (grepl("linux-gnu", R.version$os))
+          os <- "linux"
+      }
+      tolower(os)
+    },
 
     #' @description
     #' test method.
@@ -204,7 +227,7 @@ JBQ = R6::R6Class(
     #'
     #' @return character, version
     get_version = function() {
-      "0.0.1 build_2024_06_26"
+      "0.0.1 build_2024_07_01"
     },
 
     #' @description
