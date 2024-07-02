@@ -1,0 +1,7 @@
+Bootstrap: docker
+From: r-base:4.3.3
+
+%post
+  apt-get update
+  R -e "install.packages(c('devtools', 'testthat', 'roxygen2', 'logger'))"
+  R -e "remotes::install_github('TheJacksonLaboratory/bioconnect-jbqr')"
